@@ -1,0 +1,141 @@
+\ProvidesPackage{BachelorsIPMB}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{times} % Times Roman font
+\usepackage{parskip} % Adds space between paragraphs without indenting
+\usepackage[ngerman, american]{babel}
+\usepackage{csquotes}
+\usepackage[colorinlistoftodos]{todonotes}
+
+
+% --- package for abbreviations ---
+\usepackage[hidelinks]{hyperref}
+\usepackage[printonlyused,withpage]{acronym}
+
+% set list of figures and tables as subsections
+\usepackage{tocbasic}
+\renewcommand*{\listoffigures}{\listoftoc[\listfigurename]{lof}}
+\renewcommand*{\listoftables}{\listoftoc[\listtablename]{lot}}
+\setuptoc{lof}{leveldown,totoc}
+\setuptoc{lot}{leveldown,totoc}
+
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\setcounter{secnumdepth}{5}
+
+% --- Graphics config ---
+\usepackage{graphicx}
+\graphicspath{{../Images/}{../Figures/}}
+% caption format
+\usepackage[font=bf, justification=justified]{caption}
+\usepackage[font=scriptsize, labelformat=parens]{subcaption}
+\usepackage{rotating}
+
+%For importing csv tables
+\usepackage{csvsimple}
+\usepackage{booktabs} % For \toprule, \midrule and \bottomrule
+\usepackage{siunitx} % Formats the units and values
+\usepackage{pgfplotstable} % Generates table from .csv
+\pgfplotsset{
+    %width=10cm,
+    %compat=1.9,
+    table/search path={../tables}}
+% Setup siunitx:
+\sisetup{
+  %round-mode=places, % Rounds numbers
+  %round-precision=2, % to 2 places
+  detect-weight=true,
+  detect-family=true
+}
+\usepgfplotslibrary{external}
+\usepackage{makecell}
+\usepackage{longtable}
+\usepackage{placeins}
+\usepackage{pdfpages}
+% for flowcharts
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+%% convert pdf to png
+%\usepackage{epstopdf}
+%\epstopdfDeclareGraphicsRule{.pdf}{png}{.png}{convert #1 \OutputFile}
+%% use png before pdf
+\DeclareGraphicsExtensions{.png,.pdf}
+
+
+
+
+
+% --- Modifications for cell citation style ---
+\usepackage{xpatch}
+\usepackage[style=nature, bibstyle=nature , giveninits=true, uniquename=init]{biblatex}
+%
+%% Some general changes
+%\DeclareNameAlias{sortname}{last-first}
+%\renewcommand*{\bibinitdelim}{}
+%\renewbibmacro*{in:}{%
+%    \iffieldequalstr{entrytype}{inproceedings}{%
+%        \printtext{\bibstring{in}\addspace}%
+%    }{}%
+%}
+%
+%% Changes for Book
+%\csletcs{abx@macro@publisher+location+date@orig}{abx@macro@publisher+location+date}
+%\renewbibmacro*{publisher+location+date}{%
+%    \printtext[parens]{\usebibmacro{publisher+location+date@orig}}
+%}
+%\DeclareFieldFormat[book]{title}{#1\printunit{\addspace}}
+%
+%% Changes for inproceedings
+%\DeclareFieldFormat[inproceedings]{title}{#1\isdot}
+%\DeclareFieldFormat{booktitle}{#1\addcomma}
+%\xpatchbibmacro{byeditor+others}{%
+%    \usebibmacro{byeditor+othersstrg}%
+%    \setunit{\addspace}%
+%    \printnames[byeditor]{editor}%
+%    \clearname{editor}%
+%}{%
+%    \printnames[byeditor]{editor}%
+%    \clearname{editor}
+%    \addcomma\addspace
+%    \bibstring{editor}
+%    \setunit{\addspace}%
+%}{}{}
+%
+%% Changes in Article
+%\DeclareFieldFormat[article]{title}{#1}
+%\DeclareFieldFormat[article]{journaltitle}{#1\isdot}
+%\DeclareFieldFormat[article]{volume}{\textit{#1}}
+%\DeclareFieldFormat[article]{pages}{#1}
+%
+%\begin{filecontents}{\jobname.bib}
+%@ARTICLE{SL00,
+%  author = {Sondheimer, N and Lindquist, S},
+%  year = {2000},
+%  title = {Rnq1: an epigenetic modifier of protein function in yeast.},
+%  journaltitle = {Mol. Cell},
+%  volume = {5},
+%  pages = {163--172}
+%}
+%@INPROCEEDINGS{King03,
+%  author = {King, S M},
+%  editor = {M Schliwa},
+%  title = {Dynein motors: Structure, mechanochemistry and regulation},
+%  booktitle = {Molecular Motors},
+%  publisher = {Wiley-VCH Verlag GmbH},
+%  pages = {45--78},
+%  address = {Weinheim, Germany},
+%  year = {2003}
+%}
+%@BOOK{CJZ97,
+%  author = {Cowan, W M and Jessell, T M and Zipursky, S L},
+%  title = {Molecular and Cellular Approaches to Neural Development},
+%  publisher = {Oxford University Press},
+%  address = {New York},
+%  year = {1997}
+%}
+%\end{filecontents}

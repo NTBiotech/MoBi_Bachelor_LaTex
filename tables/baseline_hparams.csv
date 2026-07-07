@@ -1,0 +1,17 @@
+param,value
+genes,250
+samples per perturbation,500
+unperturbed control samples,10
+training perturbation contexts,1
+genes per context for training,20
+testing perturbation contexts,2
+genes per context for testing,5000
+training epochs,1000
+pretraining epochs,10000
+batch size,0.2
+validation size,0.001
+learning rate,0.1
+l1 loss scale,1.0
+scale spectral loss,1.0
+scale lyapunov loss,1.0
+scale KL loss,10

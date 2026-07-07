@@ -1,0 +1,69 @@
+% ---METHODS---
+\section{Methods}
+
+\subsection{Line wrap in \ac{vscode}}
+To auto wrap lines after a certain amount of characters go to settings, by pressing f1 and typing ">Preferences: Open Settings (UI)". In the top level tabs go to workspace and search for the Word Wrap setting. I suggest setting it to bounded.
+
+%Fun Fact: this is a comment, it will not appear in the resulting pdf
+\subsection{Figures}
+To insert a figure, you can use the premade code block below.
+For more customization, you can look up \href{https://www.overleaf.com/learn/latex/Inserting_Images}{overleaf.com}.
+Figures will not necessarily appear where you placed them in the code,
+% uncomment to force the figure here
+\begin{figure}%[h!]
+    \centering
+    \includegraphics[width=\textwidth]{Introduction/TCell_activation}
+    \caption{T-Cell Activation.}
+    \small\justifying
+    T-cells are activated by \acp{apc}, by the interaction of TCR with MHC and Antigen and various cofactors. The specific mix of cofactors decides the subtype of activated CD4 T-cells. After activation in the lymph node, T-cells migrate through the circulatory system until they find a locus of inflammation, where they are restimulated by another \ac{apc} carrying the same antigen.
+    \label{fig:TCell_activation}
+\end{figure}
+but they appear where latex thinks they fit best. You can modify this with tags after \textbackslash begin\{figure\}
+
+\subsubsection{Figure Format}
+For a good image resolution, always save your figures/plots as vectorized files, i.e. pdfs or svgs. As inserting a lot of pdfs into a latex files makes the load time much longer, converting them to png and inserting the pngs is much more efficient during writing. For this, you can use the convert\_figures.sh bash script, which creates converted copies of all pdfs in the figures and images directories. To tell LaTex to use the pngs instead of pdfs, uncomment the \textbackslash DeclareGraphicsExtensions\{.png,.pdf\} line in the main/BachelorsIPMB.sty file. Then when you want to build the final version, comment the line again to use the pdf versions.
+
+\subsection{Some tables}
+Here an example of how to use a csv file as table. There are other ways to create tables, such as from \href{https://www.overleaf.com/learn/latex/Tables}{here}. Another way to insert a table is also used in the AI tools section in the supplement.
+
+\begin{table}[h]
+    \centering
+    \caption{Baseline Hyperparameters.}
+    \pgfplotstabletypeset[col sep=comma,
+        columns/param/.style={column name=Parameter, string type},
+        columns/value/.style={column name=Value},
+        every head row/.style={before row=\toprule, after row=\midrule},
+        every last row/.style={after row=\bottomrule}]{baseline_hparams.csv}
+    \label{tab:someparams}
+\end{table}
+
+\subsection{Errors}
+At some point you will encounter an error message popping up when you are building your document. In \ac{vscode}, handling is not straight forward. You can look back on you last edit and see what might be causing it. Or you can search the log file for error messages.
+
+\subsection{Citations}
+To import your citations, add your ".bib" file in the misc directory and switch out the line addbibresource line in main/main.tex to fit your file name.
+You can then insert citations using \cite{abramsonAccurateStructurePrediction2024}.
+The bibliography will be automatically created at the end of the document by printbibliography.
+
+\subsection{Referencing Figures, Tables and Sections} \label{sec:intro:ref}
+To refer to figures or sections by their numbers, label the element with label (as in this section). Then you can reference its number by using ref. For this chapter you could do: see section \ref{sec:intro:ref}. Or you can reference figure \ref{fig:TCell_activation} or table \ref{tab:someparams}.
+
+\subsection{Abbreviations}
+To automate abbreviations, this document uses the acronym package.
+New abbreviations are defined in main.tex by using the \textbackslash acro\{label\}[abbr]\{long form\}. And to reference them in the tex use \textbackslash ac. The first occurence will be long form with the abbreviation in brackets. There are several options though:
+\begin{itemize}
+    \item To skip when counting the first occurence, as in the abstract, use \textbackslash ac*\{label\}: \ac*{label}
+    \item To capitalize the long form use \textbackslash Ac\{label\}: \Ac*{label}
+    \item To use in basic mode \textbackslash ac\{label\}: \ac{label}
+    \item To insert the plural use \textbackslash acp\{label\}: \acp{label}
+    \item To force the long form, use \textbackslash acf\{label\}: \acf{label}
+    \item Finally, you can combine any of these options like: \textbackslash Acp*\{label\}: \Acfp*{label}
+\end{itemize}
+For even more option, you can look up the packages documentation on \href{https://www.ctan.org/pkg/acronym}{ctan}.
+
+\subsection{List of Figures, Tables and Abbreviations}
+The lists of figures, tables and abbreviations will be automagically updated, as you add more of those elements to the document.
+
+\subsection{Tips for self-help}
+To find specific tips and tutorials, you can search on the internet and in most cases you will find some blog post, forum or overleaf tutorial.\\
+For automating figure insertion, method drafts and other verifyable tasks I recommend using an agentic LLM system such as claude code.

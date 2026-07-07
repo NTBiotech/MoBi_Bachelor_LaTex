@@ -1,0 +1,78 @@
+% !TeX root = main.tex
+\documentclass[12pt,a4paper, twoside]{article}
+\usepackage{BachelorsIPMB}
+\usepackage{import}
+\addbibresource{../misc/yourlibrary.bib} % add your library here
+\graphicspath{{../figures/}{../images/}{../tables}}
+
+\onehalfspacing
+
+\begin{document}
+\import{../misc/}{Titlepage}
+
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\nouppercase{\leftmark}}
+\fancyfoot[RO, LE]{\thepage} % Right on Odd, Left on Even
+% sign and insert the scan pdf here instead of the form
+\markboth{Declaration of Originality}{}
+\import{../misc/}{IndependenceDeclaration}
+% \includepdf[pages={1},pagecommand={}]{../misc/IndeprendenceDeclaration_signed.pdf}
+\addcontentsline{toc}{section}{Declaration of Originality}
+
+% Here you can insert the Eigenständigkeitserklärung from the institutes form
+% \markboth{Eigenständigkeitserklärung}{}
+% \includepdf[pages={1},pagecommand={}]{../misc/eigenst.pdf}
+% \addcontentsline{toc}{section}{Eigenständigkeitserklärung}
+% \newpage
+\import{../misc/}{Acknowledgments}
+\import{../sections/}{Abstract}
+\newpage
+\tableofcontents
+\addcontentsline{toc}{section}{Contents}
+\newpage
+\section*{Lists and Abbreviations}
+\markboth{Lists and Abbreviations}{}
+\addcontentsline{toc}{section}{Lists and Abbreviations}
+\listoffigures
+\listoftables
+\subsection*{List of Abbreviations}
+\vspace{12pt}
+\addcontentsline{toc}{subsection}{List of Abbreviations}
+\begin{spacing}{0.5}
+% define abbreviations here:
+\begin{acronym}
+    \acro{label}[abbr]{long form}
+    \acro{vscode}[VSCode]{Visual Studio Code}
+    \acro{apc}[APC]{antigen-presenting cell}
+    \acro{mhc}[MHC]{major histocompatibility complex}
+    \acro{tcr}[TCR]{T-cell receptor}
+    \acro{tf}[TF]{transcription factor}
+\end{acronym}
+\end{spacing}
+
+\clearpage
+
+\fancyhf{}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\fancyhead[C]{\nouppercase{\leftmark}}
+\fancyfoot[RE, LO]{\thepage} % Right on Odd, Left on Even
+\import{../sections/}{Introduction}
+\clearpage
+\import{../sections/}{Methods}
+\clearpage
+\import{../sections/}{Results}
+\clearpage
+\import{../sections/}{Discussion}
+
+\clearpage
+% bibliography insert ate the end
+\printbibliography
+\addcontentsline{toc}{section}{References}
+\clearpage
+\import{../misc}{Appendix}
+\newpage
+\end{document}
